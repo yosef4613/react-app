@@ -1,13 +1,32 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
+import { API_URL, doApiMethod } from '../services/apiSer';
 import PageHeader from './common/pageHeader';
+import {toast} from "react-toastify";
+
 
 function Login(props){
   let {register , handleSubmit ,  formState: { errors } } = useForm();
   
-  const onSubForm = (formData) => {
+  const onSubForm = async(formData) => {
     console.log(formData);
     //TODO: send formData to nodejs project /users/login in post
+    try{
+
+      let url = API_URL+"/users/login";
+      let data = await doApiMethod(url,"POST",formData);
+      console.log(data);
+      // קיבלנו טוקן : נשמור בלוקאל סטוראז ונשלח את המשמש
+      localStorage.setItem("tok",data.token);
+      // toast("You logged in , good for you!11");
+      toast.success("You logged in !");
+      // להצגת מידע על עצמו
+    }
+    catch(err){
+      console.log(err);
+      toast.error("User or password worng!");
+    }
+
   }
 
   // register -> ref= useRef()

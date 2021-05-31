@@ -1,13 +1,39 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
+import {useHistory} from "react-router-dom";
+import { toast } from 'react-toastify';
+import { API_URL, doApiMethod } from '../services/apiSer';
 import PageHeader from './common/pageHeader';
-
+ 
 function SignUpClient(props){
   let {register , handleSubmit ,  formState: { errors } } = useForm();
-  
-  const onSubForm = (formData) => {
+  let history = useHistory();
+
+  const onSubForm = async(formData) => {
     console.log(formData);
-    //TODO: send formData to nodejs project /users in post
+    
+    let url = API_URL+"/users/";
+    try{
+      let data = await doApiMethod(url,"POST",formData);
+      if(data._id){
+        toast.success("You sign up successfuly!")
+        // נרצה לשגר את המשתמש לעמוד לוג אין
+        history.push("/login");
+      }
+      else{
+        toast.error("There probelm , come back later and try again")
+      }
+    }
+    catch(err){
+      // in axios the err come with response prop and data prop
+      console.log(err.response.data);
+      if(err.response.data.code){
+        toast.error("User already in systme , try login");
+      }
+      else {
+        toast.error("There probelm , come back later and try again");
+      }
+    }
   }
 
   // register -> ref= useRef()
@@ -17,7 +43,7 @@ function SignUpClient(props){
   })
 
   let passwordRef =  register("password",{required:true, minLength:3}) ;
-  let nameRef = register("fullName",{required:true, minLength:2})
+  let nameRef = register("name",{required:true, minLength:2})
   let checkRef = register("biz",{required:false})
 
   return(

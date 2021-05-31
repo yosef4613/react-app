@@ -1,0 +1,15 @@
+1.לפתוח חשבון HEROKU אפשר להבין איך לעשות את זה עד דקה 6:00
+https://www.youtube.com/watch?v=vfSteCL95yE&list=PLP-UKVDk32JjYp8Q0xYeRnRejgXhh5egT&index=16
+
+2. לחזור על מה שעשינו במיוחד על הטפסים וההודעות טוסט
+
+3. לעשות אתר חיפוש שירים לפי ה API הבא (לא לקרוע לי אותו )
+https://deezerdevs-deezer.p.rapidapi.com/search?rapidapi-key=0553c29e4bmsh3a239d5a07dbdb4p1e9ae1jsnc9399dacde13&q=queen
+
+שעושים חיפוש מוצג שיר , תמונה של האלבום שלו , זמן (הזמן תציגו בפורמט 00:00 שניות:דקות) 
+ואפשרות להפעיל את הקובץ MP3 (יש להתשמש בתגית AUDIO ) עיצוב תחשבו בעצמכם על משהו
+
+עיצובים חמודים של תלמידים אחרים:
+https://musicwave.netlify.app/#contact
+
+https://goofy-tesla-2f327e.netlify.app/#id_row

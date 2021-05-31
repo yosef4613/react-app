@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import './App.css';
 import './css_comps/header_nav.css'
 import NavBar from './comps/navbar';
@@ -27,6 +29,7 @@ function App() {
       <footer>
         <Footer />
       </footer>
+      <ToastContainer />
     </Router>
   );
 }

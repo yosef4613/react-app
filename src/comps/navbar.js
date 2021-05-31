@@ -1,8 +1,12 @@
-import React,{useState} from 'react';
+import React,{ useState} from 'react';
 import { Link } from 'react-router-dom';
 function NavBar(props) {
   let [showMobileNav,setShowMobileNav] = useState(false);
 
+  // מעלים את התפריט נאב במצב מובייל לאחר שלחצנו על לינק
+  const hideNavMobile = () => {
+    setShowMobileNav(false) ;
+  }
 
   return (
     <div className="container nav_top p-2">
@@ -16,7 +20,7 @@ function NavBar(props) {
           </div>
         </div>
         {/* style -> with condition */}
-        <nav className={"col-lg-9 text-end"} style={{ display: showMobileNav && "block" }} >
+        <nav onClick={hideNavMobile} className={"col-lg-9 text-end"} style={{ display: showMobileNav && "block" }} >
           <Link  to="/">Home</Link>
           <Link to="/about">About</Link>
           <Link to="/login">Log in</Link>
