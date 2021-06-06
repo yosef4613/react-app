@@ -16,6 +16,7 @@ import ProtectedRoute from './comps/common/protectedRoute';
 import { useEffect, useState } from 'react';
 import { updateUserData } from './services/userSer';
 import FavoriteCards from './comps/favoriteCards';
+import MyCards from './comps/biz/myCards';
 
 function App() {
   let [user,setUser] = useState(null);
@@ -38,7 +39,8 @@ function App() {
         {/* בצורה הזאת אנחנו מקבלים יכולת לדבר דרך הפרופס
         עם היו אר אל ולראות אם הוא השתנה ובנוסף נוכל לרנדר אותו 
         מחדש כל פעם שיש שינוי ביו אר אל */}
-        <Route path="/" component={NavBar} />
+        {/* גם הנאב ממתין שנקבל מידע מהיוזר */}
+        { user && <Route path="/" component={NavBar} /> }
       </header>
           {/* לא יציג את המידע עד שלא מקבלים מידע על היוזר */}
       { user &&
@@ -52,6 +54,8 @@ function App() {
           {/* <Route exact path="/userInfo" component={UserInfo}/> */}
           <ProtectedRoute path="/userInfo" comp={UserInfo} />
           <ProtectedRoute path="/favorites" comp={FavoriteCards} />
+         {/* bizRoute -> רק עסק יכול להיות בראוט הזה */}
+          <ProtectedRoute bizRoute={true} path="/myBizCards" comp={MyCards} />
           <Route path="/" component={Page404} />
         </Switch>
       </main>

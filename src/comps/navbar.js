@@ -4,7 +4,15 @@ import { toast } from 'react-toastify';
 import { getUserData, updateUserData } from '../services/userSer';
 function NavBar(props) {
   let [showMobileNav, setShowMobileNav] = useState(false);
+  let [user,setUser] = useState(null);
   let history = useHistory()
+
+
+  useEffect(() => {
+    setUser(getUserData())
+    // props.location -> קיים בגלל שהוא נקרא מתוך ראוט
+    // ומשתנה כל פעם שנעבור כתובת
+  },[props.location])
 
   // מעלים את התפריט נאב במצב מובייל לאחר שלחצנו על לינק
   const hideNavMobile = () => {
@@ -45,6 +53,9 @@ function NavBar(props) {
             <React.Fragment>
               <Link to="/userInfo">User info</Link>
               <Link to="/favorites">My Favorites</Link>
+        {/* ? - אם עדיין לפני הנקודה האובייקט או המאפיין
+        לא קיימים או נאל לא יחזיר שגיאה */}
+            { user?.biz && <Link to="/myBizCards">My cards</Link> }
               <Link onClick={logOut} to="#" className="text-danger">Log out</Link>
             </React.Fragment>
           }

@@ -28,6 +28,7 @@ export const updateUserData = async () => {
       return user
     }
   }
+  // אם לא קיים טוקן
   else{
     user = {}
     return user;

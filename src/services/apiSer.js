@@ -4,7 +4,7 @@ import axios from "axios"
 export const API_URL = "http://localhost:3400";
 // export const API_URL = "https://ynet.co.il";
 // קבוע שמחזיר כמה פריטים יהיו פר פייג
-export const PER_PAGE = 5;
+export const PER_PAGE = 6;
 
 export const doApiGet = async (_url) => {
   try {
@@ -31,7 +31,7 @@ export const doApiMethod = async (_url, _method, _bodyData) => {
     return resp.data;
   }
   catch (err) {
-    console.log(err );
+    console.log(err);
     // אם יש טעות גם הפרומיס שמאזין יריץ 
     // את ה ERR
     throw err;
