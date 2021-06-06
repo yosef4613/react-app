@@ -1,13 +1,16 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
-import { API_URL, doApiMethod } from '../services/apiSer';
-import PageHeader from './common/pageHeader';
 import {toast} from "react-toastify";
+import { API_URL, doApiMethod } from '../services/apiSer';
+import {useHistory} from "react-router-dom"
+import PageHeader from './common/pageHeader';
+import { updateUserData} from '../services/userSer';
 
 
 function Login(props){
   let {register , handleSubmit ,  formState: { errors } } = useForm();
-  
+  let history = useHistory();
+
   const onSubForm = async(formData) => {
     console.log(formData);
     //TODO: send formData to nodejs project /users/login in post
@@ -18,9 +21,12 @@ function Login(props){
       console.log(data);
       // קיבלנו טוקן : נשמור בלוקאל סטוראז ונשלח את המשמש
       localStorage.setItem("tok",data.token);
+      // מעדכן את הפרטים על היוזר
+      // ככה שנוכל לשלוף אותם בכל מקום מהסרבס
+      await updateUserData();
       // toast("You logged in , good for you!11");
       toast.success("You logged in !");
-      // להצגת מידע על עצמו
+      history.push("/userInfo");
     }
     catch(err){
       console.log(err);
