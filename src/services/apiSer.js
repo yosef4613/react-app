@@ -1,8 +1,14 @@
 import axios from "axios"
-
 // שנעלה לשרת יתחליף לכתובת של השרת
-export const API_URL = "http://localhost:3400";
-// export const API_URL = "https://ynet.co.il";
+let myApi = "http://localhost:3400";
+// אם בכתובת למעלה לא מזהה שהריאקט עובד מהלוקאל משנה את הכתובת
+// איי פי איי לשרת הירקו במקרה שלנו
+if (!window.location.href.includes("localhost:")) {
+  myApi = "https://aaaaaaa";
+}
+
+export const API_URL = myApi;
+
 // קבוע שמחזיר כמה פריטים יהיו פר פייג
 export const PER_PAGE = 6;
 

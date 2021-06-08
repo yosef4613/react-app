@@ -14,7 +14,7 @@ function Home(props){
     const quries = new URLSearchParams(window.location.search);
     let page = quries.get("page") ? quries.get("page")-1 : 0;
     // משתמשים ביכולת בצד שרת של איסוף ה5 מעמוד
-    let url = API_URL+"/cards?page="+page;
+    let url = API_URL+"/cards?reverse=yes&page="+page;
     doApi(url)
 // props.location -> מתשנה שהרואט משתנה למעלה
   },[props.location])
