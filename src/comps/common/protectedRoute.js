@@ -38,7 +38,8 @@ function ProtectedRoute(props) {
       render={() => {
         // בודק אם היוזר מחובר ואם לא משגר אותו בחזרה ללוגאין
         checkTokenUser();
-        return (<props.comp />);
+        // {...props} -> כדי שנוכל לאסוף פרופס מקומפניטה שמקבלת פרמטר
+        return (<props.comp {...props}  />);
       }} />
   )
 }

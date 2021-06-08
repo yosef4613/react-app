@@ -17,22 +17,24 @@ import { useEffect, useState } from 'react';
 import { updateUserData } from './services/userSer';
 import FavoriteCards from './comps/favoriteCards';
 import MyCards from './comps/biz/myCards';
+import AddCard from './comps/biz/addCard';
+import EditCard from './comps/biz/editCard';
 
 function App() {
-  let [user,setUser] = useState(null);
+  let [user, setUser] = useState(null);
 
   useEffect(() => {
     ifUserLogin()
-        
+
   }, [])
 
-  const ifUserLogin = async() => {
+  const ifUserLogin = async () => {
     let data = await updateUserData();
     // במידה ויש טוקן נקבל את כל המידע על היוזר שלנו
     // וגם נבדוק בהתחלה שהיוזר קיבל מידע לפני שנציג את המידע באתר
     setUser(data);
   }
-  
+
   return (
     <Router>
       <header className="container-fluid shadow-sm">
@@ -40,30 +42,32 @@ function App() {
         עם היו אר אל ולראות אם הוא השתנה ובנוסף נוכל לרנדר אותו 
         מחדש כל פעם שיש שינוי ביו אר אל */}
         {/* גם הנאב ממתין שנקבל מידע מהיוזר */}
-        { user && <Route path="/" component={NavBar} /> }
+        {user && <Route path="/" component={NavBar} />}
       </header>
-          {/* לא יציג את המידע עד שלא מקבלים מידע על היוזר */}
+      {/* לא יציג את המידע עד שלא מקבלים מידע על היוזר */}
       { user &&
-      <main className="container" style={{ minHeight: "81vh" }}>
-    
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/about" component={About} />
-          <Route exact path="/signup" component={SignUpClient} />
-          <Route exact path="/login" component={Login} />
-          {/* <Route exact path="/userInfo" component={UserInfo}/> */}
-          <ProtectedRoute path="/userInfo" comp={UserInfo} />
-          <ProtectedRoute path="/favorites" comp={FavoriteCards} />
-         {/* bizRoute -> רק עסק יכול להיות בראוט הזה */}
-          <ProtectedRoute bizRoute={true} path="/myBizCards" comp={MyCards} />
-          <Route path="/" component={Page404} />
-        </Switch>
-      </main>
+        <main className="container" style={{ minHeight: "81vh" }}>
+
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/signup" component={SignUpClient} />
+            <Route exact path="/login" component={Login} />
+            {/* <Route exact path="/userInfo" component={UserInfo}/> */}
+            <ProtectedRoute path="/userInfo" comp={UserInfo} />
+            <ProtectedRoute path="/favorites" comp={FavoriteCards} />
+            {/* bizRoute -> רק עסק יכול להיות בראוט הזה */}
+            <ProtectedRoute bizRoute={true} path="/myBizCards" comp={MyCards} />
+            <ProtectedRoute bizRoute={true} path="/addCard" comp={AddCard} />
+            <ProtectedRoute bizRoute={true} path="/editCard/:id" comp={EditCard} />
+            <Route path="/" component={Page404} />
+          </Switch>
+        </main>
       }
       <footer>
         <Footer />
       </footer>
-      <ToastContainer />
+      <ToastContainer position="top-left" />
     </Router>
   );
 }
