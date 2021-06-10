@@ -4,7 +4,7 @@ let myApi = "http://localhost:3400";
 // אם בכתובת למעלה לא מזהה שהריאקט עובד מהלוקאל משנה את הכתובת
 // איי פי איי לשרת הירקו במקרה שלנו
 if (!window.location.href.includes("localhost:")) {
-  myApi = "https://aaaaaaa";
+  myApi = "https://cards-2035.herokuapp.com";
 }
 
 export const API_URL = myApi;
