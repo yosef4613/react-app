@@ -1,6 +1,7 @@
 import axios from "axios"
 // שנעלה לשרת יתחליף לכתובת של השרת
-let myApi = "http://localhost:3400";
+let myApi = "https://cards-2035.herokuapp.com";
+// http://localhost:3400 nodejs
 // אם בכתובת למעלה לא מזהה שהריאקט עובד מהלוקאל משנה את הכתובת
 // איי פי איי לשרת הירקו במקרה שלנו
 if (!window.location.href.includes("localhost:")) {

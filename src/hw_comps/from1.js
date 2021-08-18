@@ -22,7 +22,7 @@ function Form1(props) {
       <form onSubmit={handleSubmit(onFormSub)} className="col-lg-6 mx-auto shadow p-3 rounded mt-3">
         <div>
           <label>Email:</label>
-          <input type="text" className="form-control" />
+          <input {...emailRef} type="text" className="form-control" />
         </div>
         <div>
           <label>Password:</label>
